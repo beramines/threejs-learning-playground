@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code settings (local configuration)
+.claude/settings.local.json
+
+# MCP server cache
+.serena/
