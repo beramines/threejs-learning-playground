@@ -1,0 +1,1 @@
+export { LightingDemo } from './LightingDemo';
