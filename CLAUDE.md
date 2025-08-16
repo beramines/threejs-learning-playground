@@ -8,11 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` - Build for production (TypeScript compilation + Vite build)
 - `npm run preview` - Preview the production build locally
 - `npm run lint` - Run ESLint to check code quality
-- `npm test:e2e` - Run Playwright end-to-end tests
-- `npm test:e2e:ui` - Run Playwright tests with UI mode
-- `npm test:e2e:headed` - Run Playwright tests in headed mode
-- `npm test:e2e:debug` - Debug Playwright tests
-- `npm test:e2e:report` - Show Playwright test report
+- `npm test` - Run unit tests with Vitest
+- `npm run test:ui` - Run unit tests with Vitest UI
+- `npm run test:run` - Run unit tests once (no watch mode)
+- `npm run test:coverage` - Run unit tests with coverage report
 
 ## Project Architecture
 
@@ -75,9 +74,11 @@ SampleName.description = 'Sample description';
 
 ### Testing Strategy
 
-Comprehensive Playwright E2E tests cover:
-- Navigation between categories and samples
-- 3D content rendering and canvas interaction
-- Leva controls functionality
-- Performance and memory leak detection
-- Responsive layout behavior
+Unit tests with Vitest and Testing Library cover:
+- Component rendering and functionality
+- Type definitions and category metadata
+- React component props and state management
+- Utility functions and helper methods
+- Mocked Three.js WebGL context for 3D components
+
+Tests are located in `__tests__` directories alongside source files. The test setup includes mocks for WebGL context, ResizeObserver, and animation frame APIs to enable testing of 3D components without real WebGL rendering.
