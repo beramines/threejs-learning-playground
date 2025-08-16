@@ -157,7 +157,6 @@ export default function BasicPhysics() {
         
         <gridHelper args={[50, 50]} position={[0, -4.99, 0]} />
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

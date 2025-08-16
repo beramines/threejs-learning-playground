@@ -103,7 +103,6 @@ export default function TextureBasics() {
         <gridHelper args={[10, 10]} />
         <axesHelper args={[5]} />
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

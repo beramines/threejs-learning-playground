@@ -228,7 +228,6 @@ export default function AdvancedPhysics() {
         </p>
       </div>
       
-      <Leva collapsed={false} />
     </div>
   );
 }

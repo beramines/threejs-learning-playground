@@ -120,7 +120,6 @@ export default function BasicPostProcessing() {
           )}
         </EffectComposer>
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

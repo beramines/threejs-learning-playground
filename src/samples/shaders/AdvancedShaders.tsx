@@ -290,7 +290,6 @@ export default function AdvancedShaders() {
         
         <gridHelper args={[20, 20]} />
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

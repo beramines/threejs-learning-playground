@@ -162,7 +162,6 @@ export default function AdvancedFeatures() {
         
         <gridHelper args={[20, 20]} />
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

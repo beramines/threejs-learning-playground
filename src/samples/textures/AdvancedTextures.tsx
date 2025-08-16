@@ -175,7 +175,6 @@ export default function AdvancedTextures() {
         
         <gridHelper args={[10, 10]} />
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

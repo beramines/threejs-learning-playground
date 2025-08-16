@@ -211,7 +211,6 @@ export default function AdvancedPostProcessing() {
           )}
         </EffectComposer>
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

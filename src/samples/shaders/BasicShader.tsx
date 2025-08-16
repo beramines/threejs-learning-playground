@@ -119,7 +119,6 @@ export default function BasicShader() {
         
         <axesHelper args={[5]} />
       </Canvas>
-      <Leva collapsed={false} />
     </div>
   );
 }

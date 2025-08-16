@@ -199,7 +199,6 @@ export default function PerformanceOptimization() {
         <gridHelper args={[100, 100]} />
       </Canvas>
       
-      <Leva collapsed={false} />
     </div>
   );
 }
