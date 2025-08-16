@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 
 interface SidebarProps {
@@ -22,9 +23,16 @@ const Sidebar: React.FC<SidebarProps> = ({
   onCategorySelect,
   onToggle,
 }) => {
+  const navigate = useNavigate();
+  
   const getIcon = (iconName: string) => {
     const Icon = Icons[iconName as keyof typeof Icons] as React.ComponentType<any>;
     return Icon ? <Icon size={20} /> : null;
+  };
+
+  const handleCategoryClick = (categoryId: string) => {
+    onCategorySelect(categoryId);
+    navigate(`/category/${categoryId}`);
   };
 
   return (
@@ -57,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         {categories.map((category) => (
           <button
             key={category.id}
-            onClick={() => onCategorySelect(category.id)}
+            onClick={() => handleCategoryClick(category.id)}
             className={`w-full flex items-center p-3 mb-1 rounded-lg transition-all ${
               currentCategory === category.id
                 ? 'bg-blue-600 text-white'

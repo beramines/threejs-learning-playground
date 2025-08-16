@@ -1,5 +1,5 @@
-import React, { Suspense, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import React, { Suspense, useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useParams } from 'react-router-dom';
 import { Leva } from 'leva';
 import Sidebar from './components/layout/Sidebar';
 import Header from './components/layout/Header';
@@ -23,12 +23,53 @@ import * as PhysicsSamples from './samples/physics';
 import * as PerformanceSamples from './samples/performance';
 import * as AdvancedSamples from './samples/advanced';
 
+// ラッパーコンポーネント
+const CategoryViewWrapper: React.FC<{
+  onSampleSelect: (sampleId: string) => void;
+  samplesMap: any;
+}> = ({ onSampleSelect, samplesMap }) => {
+  const { categoryId } = useParams<{ categoryId: string }>();
+  return (
+    <CategoryView
+      categoryId={categoryId || 'basics'}
+      onSampleSelect={onSampleSelect}
+      samplesMap={samplesMap}
+    />
+  );
+};
+
+const SampleViewerWrapper: React.FC<{
+  samplesMap: any;
+}> = ({ samplesMap }) => {
+  const { categoryId, sampleId } = useParams<{ categoryId: string; sampleId: string }>();
+  return (
+    <SampleViewer
+      categoryId={categoryId || 'basics'}
+      sampleId={sampleId || ''}
+      samplesMap={samplesMap}
+    />
+  );
+};
+
 // レイアウトラッパーコンポーネント
 const AppContent: React.FC = () => {
   const location = useLocation();
+  const { categoryId, sampleId } = useParams();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [currentCategory, setCurrentCategory] = useState('basics');
   const [currentSample, setCurrentSample] = useState<string | null>(null);
+
+  // URL パラメータから状態を同期
+  useEffect(() => {
+    if (categoryId) {
+      setCurrentCategory(categoryId);
+    }
+    if (sampleId) {
+      setCurrentSample(sampleId);
+    } else {
+      setCurrentSample(null);
+    }
+  }, [categoryId, sampleId]);
 
   // サンプルコンポーネントのマッピング
   const samplesMap = {
@@ -57,12 +98,16 @@ const AppContent: React.FC = () => {
 
   // ホームページの場合はレイアウトなしで表示
   if (location.pathname === '/home') {
-    return <HomePage />;
+    return (
+      <div className="min-h-screen overflow-y-auto">
+        <HomePage />
+      </div>
+    );
   }
 
   // それ以外は通常のレイアウト
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
+    <div className="flex h-screen bg-gray-900 text-white overflow-hidden">
       {/* サイドバー */}
       <Sidebar
         isOpen={sidebarOpen}
@@ -88,21 +133,18 @@ const AppContent: React.FC = () => {
               <Route path="/" element={<Navigate to="/home" replace />} />
               <Route path="/home" element={<HomePage />} />
               <Route
-                path="/category/:categoryId"
+                path="/category/:categoryId/:sampleId"
                 element={
-                  <CategoryView
-                    categoryId={location.pathname.split('/')[2] || 'basics'}
-                    onSampleSelect={handleSampleSelect}
+                  <SampleViewerWrapper
                     samplesMap={samplesMap}
                   />
                 }
               />
               <Route
-                path="/category/:categoryId/:sampleId"
+                path="/category/:categoryId"
                 element={
-                  <SampleViewer
-                    categoryId={location.pathname.split('/')[2] || 'basics'}
-                    sampleId={location.pathname.split('/')[3] || ''}
+                  <CategoryViewWrapper
+                    onSampleSelect={handleSampleSelect}
                     samplesMap={samplesMap}
                   />
                 }

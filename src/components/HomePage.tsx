@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 overflow-y-auto">
       {/* ヒーローセクション */}
       <div className="container mx-auto px-4 py-20">
         <div className="text-center max-w-4xl mx-auto">
@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
             Three.jsを楽しく学ぼう
           </p>
           <button
-            onClick={() => navigate('/basics')}
+            onClick={() => navigate('/category/basics')}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg inline-flex items-center gap-2 transition-all transform hover:scale-105"
           >
             学習を始める
@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
             <div
               key={index}
               className="bg-white/10 backdrop-blur-lg rounded-lg p-4 text-center hover:bg-white/20 transition-all cursor-pointer"
-              onClick={() => navigate(`/${category.path}`)}
+              onClick={() => navigate(`/category/${category.path}`)}
             >
               <div className="text-white font-semibold">{category.name}</div>
             </div>
@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
             今すぐ Three.js の世界を探検しよう
           </p>
           <button
-            onClick={() => navigate('/basics')}
+            onClick={() => navigate('/category/basics')}
             className="bg-white text-blue-600 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg inline-flex items-center gap-2 transition-all transform hover:scale-105"
           >
             探検を始める
