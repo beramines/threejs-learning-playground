@@ -1,6 +1,6 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, useTexture, Box, Sphere } from '@react-three/drei';
+import { OrbitControls, Environment, useTexture } from '@react-three/drei';
 import { Leva, useControls } from 'leva';
 import * as THREE from 'three';
 
@@ -29,12 +29,55 @@ function TexturedSphere() {
     showDisplacementMap: true
   });
 
-  // テクスチャをロード
-  const textures = useTexture({
-    map: 'https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg',
-    normalMap: 'https://threejs.org/examples/textures/planets/earth_normal_2048.jpg',
-    displacementMap: 'https://threejs.org/examples/textures/planets/earth_displacement.jpg',
-  });
+  // シンプルなテクスチャを作成
+  const textures = React.useMemo(() => {
+    // ベースカラーテクスチャ（シンプルなグラデーション）
+    const mapCanvas = document.createElement('canvas');
+    mapCanvas.width = 256;
+    mapCanvas.height = 256;
+    const mapContext = mapCanvas.getContext('2d')!;
+    
+    const gradient = mapContext.createLinearGradient(0, 0, 256, 256);
+    gradient.addColorStop(0, '#4a90e2');
+    gradient.addColorStop(1, '#2c5aa0');
+    
+    mapContext.fillStyle = gradient;
+    mapContext.fillRect(0, 0, 256, 256);
+    
+    const map = new THREE.CanvasTexture(mapCanvas);
+    
+    // シンプルな法線マップ
+    const normalCanvas = document.createElement('canvas');
+    normalCanvas.width = 256;
+    normalCanvas.height = 256;
+    const normalContext = normalCanvas.getContext('2d')!;
+    
+    normalContext.fillStyle = '#8080ff';
+    normalContext.fillRect(0, 0, 256, 256);
+    
+    // 少数のバンプパターン
+    for (let i = 0; i < 10; i++) {
+      normalContext.fillStyle = '#a0a0ff';
+      normalContext.beginPath();
+      normalContext.arc(Math.random() * 256, Math.random() * 256, 20, 0, Math.PI * 2);
+      normalContext.fill();
+    }
+    
+    const normalMap = new THREE.CanvasTexture(normalCanvas);
+    
+    // シンプルな変位マップ
+    const displacementCanvas = document.createElement('canvas');
+    displacementCanvas.width = 256;
+    displacementCanvas.height = 256;
+    const displacementContext = displacementCanvas.getContext('2d')!;
+    
+    displacementContext.fillStyle = '#808080';
+    displacementContext.fillRect(0, 0, 256, 256);
+    
+    const displacementMap = new THREE.CanvasTexture(displacementCanvas);
+    
+    return { map, normalMap, displacementMap };
+  }, []);
   
   // アニメーション
   useFrame((state) => {
@@ -69,18 +112,22 @@ function EnvironmentBox() {
   return showEnvironment ? (
     <>
       {/* 周囲にボックスを配置 */}
-      <Box position={[-4, 0, 0]} args={[1, 1, 1]}>
+      <mesh position={[-4, 0, 0]}>
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="red" metalness={0.9} roughness={0.1} />
-      </Box>
-      <Box position={[4, 0, 0]} args={[1, 1, 1]}>
+      </mesh>
+      <mesh position={[4, 0, 0]}>
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="blue" metalness={0.9} roughness={0.1} />
-      </Box>
-      <Box position={[0, 0, -4]} args={[1, 1, 1]}>
+      </mesh>
+      <mesh position={[0, 0, -4]}>
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="green" metalness={0.9} roughness={0.1} />
-      </Box>
-      <Box position={[0, 0, 4]} args={[1, 1, 1]}>
+      </mesh>
+      <mesh position={[0, 0, 4]}>
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color="yellow" metalness={0.9} roughness={0.1} />
-      </Box>
+      </mesh>
     </>
   ) : null;
 }
@@ -100,20 +147,24 @@ export default function AdvancedTextures() {
         camera={{ position: [5, 3, 5], fov: 50 }}
         shadows
       >
-        <ambientLight intensity={0.2} />
-        <directionalLight 
-          position={[5, 8, 5]} 
-          intensity={1} 
-          castShadow
-          shadow-mapSize={[2048, 2048]}
-        />
-        <pointLight position={[-5, 5, -5]} intensity={0.5} color="#ffaa00" />
         
         <TexturedSphere />
         <EnvironmentBox />
         
-        {/* 環境マップ */}
-        <Environment preset={environmentPreset as any} background />
+        {/* シンプルな環境ライティング */}
+        <ambientLight intensity={environmentPreset === 'night' ? 0.1 : environmentPreset === 'sunset' ? 0.3 : 0.2} />
+        <directionalLight 
+          position={[5, 8, 5]} 
+          intensity={environmentPreset === 'night' ? 0.5 : environmentPreset === 'sunset' ? 1.2 : 1} 
+          color={environmentPreset === 'night' ? '#4444aa' : environmentPreset === 'sunset' ? '#ffaa44' : '#ffffff'}
+          castShadow
+          shadow-mapSize={[2048, 2048]}
+        />
+        <pointLight 
+          position={[-5, 5, -5]} 
+          intensity={environmentPreset === 'night' ? 0.3 : 0.5} 
+          color={environmentPreset === 'night' ? '#2222ff' : environmentPreset === 'sunset' ? '#ff6600' : '#ffaa00'} 
+        />
         
         <OrbitControls 
           enableDamping 
@@ -131,3 +182,4 @@ export default function AdvancedTextures() {
 
 AdvancedTextures.title = '高度なテクスチャ';
 AdvancedTextures.description = '法線マップ、変位マップ、環境マップを使用した高度なテクスチャリング';
+AdvancedTextures.hasCanvas = true;

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useTexture } from '@react-three/drei';
 import { Leva, useControls } from 'leva';
@@ -26,8 +26,26 @@ function TexturedCube() {
     }
   });
 
-  // テクスチャをロード（Three.jsのデフォルトテクスチャパスを使用）
-  const colorMap = useTexture('https://threejs.org/examples/textures/uv_grid_opengl.jpg');
+  // プロシージャルテクスチャを作成
+  const colorMap = React.useMemo(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 256;
+    canvas.height = 256;
+    const context = canvas.getContext('2d')!;
+    
+    // チェッカーボードパターンを描画
+    const size = 32;
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        context.fillStyle = (i + j) % 2 === 0 ? '#ffffff' : '#cccccc';
+        context.fillRect(i * size, j * size, size, size);
+      }
+    }
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    return texture;
+  }, []);
   
   // テクスチャ設定を更新
   colorMap.wrapS = colorMap.wrapT = THREE.RepeatWrapping;
@@ -92,3 +110,4 @@ export default function TextureBasics() {
 
 TextureBasics.title = 'テクスチャの基本';
 TextureBasics.description = 'UV マッピング、テクスチャの繰り返し、オフセット、回転の基本的な例';
+TextureBasics.hasCanvas = true;

@@ -6,7 +6,14 @@
       "Bash(npm test)",
       "Bash(npm run test:run:*)",
       "Bash(npm run test:coverage:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_console_messages",
+      "Bash(node:*)",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_select_option"
     ],
     "deny": [],
     "ask": []
