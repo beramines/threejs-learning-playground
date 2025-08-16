@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, shaderMaterial } from '@react-three/drei';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import * as THREE from 'three';
 
 // カスタムシェーダーマテリアルを拡張
@@ -270,27 +270,16 @@ function GlowSphere() {
 // メインコンポーネント
 export default function AdvancedShaders() {
   return (
-    <div className="w-full h-full relative">
-      <Canvas
-        camera={{ position: [8, 4, 8], fov: 50 }}
-      >
-        <color attach="background" args={['#000000']} />
-        <ambientLight intensity={0.1} />
-        <directionalLight position={[5, 5, 5]} intensity={0.5} />
-        
-        <FireEffect />
-        <GlowSphere />
-        
-        <OrbitControls 
-          enableDamping 
-          dampingFactor={0.05}
-          minDistance={5}
-          maxDistance={20}
-        />
-        
-        <gridHelper args={[20, 20]} />
-      </Canvas>
-    </div>
+    <>
+      <color attach="background" args={['#000000']} />
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[5, 5, 5]} intensity={0.5} />
+      
+      <FireEffect />
+      <GlowSphere />
+      
+      <gridHelper args={[20, 20]} />
+    </>
   );
 }
 

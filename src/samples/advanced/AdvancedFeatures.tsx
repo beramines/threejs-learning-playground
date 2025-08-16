@@ -139,10 +139,9 @@ export default function AdvancedFeatures() {
   });
 
   return (
-    <div className="w-full h-full relative">
-      <Canvas camera={{ position: [10, 5, 10], fov: 50 }}>
-        <color attach="background" args={['#222']} />
-        <fog attach="fog" args={['#222', 5, 30]} />
+    <>
+      <color attach="background" args={['#222']} />
+      <fog attach="fog" args={['#222', 5, 30]} />
         
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
@@ -161,8 +160,7 @@ export default function AdvancedFeatures() {
         />
         
         <gridHelper args={[20, 20]} />
-      </Canvas>
-    </div>
+    </>
   );
 }
 

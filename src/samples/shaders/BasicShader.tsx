@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import * as THREE from 'three';
 
 // カスタムシェーダーマテリアル
@@ -101,25 +101,14 @@ function ShaderPlane() {
 // メインコンポーネント
 export default function BasicShader() {
   return (
-    <div className="w-full h-full relative">
-      <Canvas
-        camera={{ position: [7, 5, 7], fov: 50 }}
-      >
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 5]} intensity={1} />
-        
-        <ShaderPlane />
-        
-        <OrbitControls 
-          enableDamping 
-          dampingFactor={0.05}
-          minDistance={3}
-          maxDistance={20}
-        />
-        
-        <axesHelper args={[5]} />
-      </Canvas>
-    </div>
+    <>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
+      
+      <ShaderPlane />
+      
+      <axesHelper args={[5]} />
+    </>
   );
 }
 

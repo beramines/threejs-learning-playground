@@ -80,47 +80,35 @@ export default function BasicPostProcessing() {
   });
 
   return (
-    <div className="w-full h-full relative">
-      <Canvas
-        camera={{ position: [8, 6, 8], fov: 50 }}
-        gl={{ antialias: true }}
-      >
-        <color attach="background" args={['#111']} />
-        
-        <Scene />
-        
-        <OrbitControls 
-          enableDamping 
-          dampingFactor={0.05}
-          minDistance={5}
-          maxDistance={20}
+    <>
+      <color attach="background" args={['#111']} />
+      
+      <Scene />
+      
+      <EffectComposer>
+        <Bloom
+          intensity={bloomIntensity}
+          luminanceThreshold={bloomThreshold}
+          luminanceSmoothing={bloomSmoothing}
+          radius={bloomRadius}
         />
-        
-        <EffectComposer>
-          <Bloom
-            intensity={bloomIntensity}
-            luminanceThreshold={bloomThreshold}
-            luminanceSmoothing={bloomSmoothing}
-            radius={bloomRadius}
+        <ChromaticAberration
+          offset={chromaticOffset}
+          radialModulation={chromaticRadialModulation}
+          modulationOffset={0}
+        />
+        <Vignette
+          offset={vignetteOffset}
+          darkness={vignetteDarkness}
+        />
+        {noiseEnabled && (
+          <Noise
+            opacity={noiseOpacity}
+            blendFunction={BlendFunction.OVERLAY}
           />
-          <ChromaticAberration
-            offset={chromaticOffset}
-            radialModulation={chromaticRadialModulation}
-            modulationOffset={0}
-          />
-          <Vignette
-            offset={vignetteOffset}
-            darkness={vignetteDarkness}
-          />
-          {noiseEnabled && (
-            <Noise
-              opacity={noiseOpacity}
-              blendFunction={BlendFunction.OVERLAY}
-            />
-          )}
-        </EffectComposer>
-      </Canvas>
-    </div>
+        )}
+      </EffectComposer>
+    </>
   );
 }
 

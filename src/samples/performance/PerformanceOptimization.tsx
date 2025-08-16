@@ -98,25 +98,43 @@ function OptimizedInstances() {
 
 // LOD（Level of Detail）の例
 function LODExample() {
-  const { distance } = useControls('LOD設定', {
-    distance: { value: 10, min: 5, max: 50, step: 1 }
+  const { distance, quality } = useControls('LOD設定', {
+    distance: { value: 10, min: 5, max: 50, step: 1 },
+    quality: { value: 'high', options: ['high', 'medium', 'low'] }
   });
 
+  // カメラからの距離に応じて品質を切り替え
+  const getGeometry = () => {
+    switch (quality) {
+      case 'high':
+        return <sphereGeometry args={[1, 32, 32]} />;
+      case 'medium':
+        return <sphereGeometry args={[1, 16, 16]} />;
+      case 'low':
+        return <sphereGeometry args={[1, 8, 8]} />;
+      default:
+        return <sphereGeometry args={[1, 16, 16]} />;
+    }
+  };
+
+  const getColor = () => {
+    switch (quality) {
+      case 'high':
+        return 'red';
+      case 'medium':
+        return 'yellow';
+      case 'low':
+        return 'green';
+      default:
+        return 'yellow';
+    }
+  };
+
   return (
-    <lod>
-      <mesh visible userData={{ distance: 0 }}>
-        <sphereGeometry args={[1, 32, 32]} />
-        <meshStandardMaterial color="red" />
-      </mesh>
-      <mesh visible userData={{ distance }}>
-        <sphereGeometry args={[1, 16, 16]} />
-        <meshStandardMaterial color="yellow" />
-      </mesh>
-      <mesh visible userData={{ distance: distance * 2 }}>
-        <sphereGeometry args={[1, 8, 8]} />
-        <meshStandardMaterial color="green" />
-      </mesh>
-    </lod>
+    <mesh position={[distance, 0, 0]}>
+      {getGeometry()}
+      <meshStandardMaterial color={getColor()} />
+    </mesh>
   );
 }
 
@@ -141,23 +159,11 @@ export default function PerformanceOptimization() {
   }));
 
   return (
-    <div className="w-full h-full relative">
+    <>
       {showStats && <Stats />}
       
-      <Canvas
-        camera={{ position: [20, 20, 20], fov: 50 }}
-        shadows
-        dpr={adaptiveDpr ? [0.5, 2] : dpr.current}
-        gl={{ 
-          antialias,
-          powerPreference: "high-performance",
-          alpha: false,
-          stencil: false,
-          depth: true
-        }}
-      >
-        <color attach="background" args={['#111']} />
-        <fog attach="fog" args={['#111', 20, 100]} />
+      <color attach="background" args={['#111']} />
+      <fog attach="fog" args={['#111', 20, 100]} />
         
         {adaptiveDpr && (
           <AdaptiveDpr pixelated />
@@ -197,9 +203,7 @@ export default function PerformanceOptimization() {
         />
         
         <gridHelper args={[100, 100]} />
-      </Canvas>
-      
-    </div>
+    </>
   );
 }
 

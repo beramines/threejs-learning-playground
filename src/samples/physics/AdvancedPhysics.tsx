@@ -162,13 +162,9 @@ export default function AdvancedPhysics() {
   ));
 
   return (
-    <div className="w-full h-full relative">
-      <Canvas
-        camera={{ position: [20, 15, 20], fov: 50 }}
-        shadows
-      >
-        <color attach="background" args={['#111']} />
-        <fog attach="fog" args={['#111', 10, 100]} />
+    <>
+      <color attach="background" args={['#111']} />
+      <fog attach="fog" args={['#111', 10, 100]} />
         
         <ambientLight intensity={0.3} />
         <directionalLight
@@ -220,15 +216,7 @@ export default function AdvancedPhysics() {
         />
         
         <gridHelper args={[100, 100]} position={[0, -4.99, 0]} />
-      </Canvas>
-      
-      <div className="absolute bottom-4 left-4 bg-black/50 p-4 rounded-lg">
-        <p className="text-white text-sm">
-          💡 ヒント: 紫の球をクリックすると力が加わります
-        </p>
-      </div>
-      
-    </div>
+    </>
   );
 }
 

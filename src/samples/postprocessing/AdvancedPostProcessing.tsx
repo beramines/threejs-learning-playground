@@ -145,73 +145,60 @@ export default function AdvancedPostProcessing() {
   });
 
   return (
-    <div className="w-full h-full relative">
-      <Canvas
-        camera={{ position: [10, 5, 10], fov: 50 }}
-        gl={{ antialias: false }}
-        shadows
-      >
-        <color attach="background" args={['#000']} />
-        <fog attach="fog" args={['#000', 10, 50]} />
-        
-        <AnimatedScene />
-        
-        <OrbitControls 
-          enableDamping 
-          dampingFactor={0.05}
-          minDistance={5}
-          maxDistance={30}
+    <>
+      <color attach="background" args={['#000']} />
+      <fog attach="fog" args={['#000', 10, 50]} />
+      
+      <AnimatedScene />
+      
+      <EffectComposer>
+        <DepthOfField
+          focusDistance={focusDistance}
+          focalLength={focalLength}
+          bokehScale={bokehScale}
+          height={480}
         />
         
-        <EffectComposer>
-          <DepthOfField
-            focusDistance={focusDistance}
-            focalLength={focalLength}
-            bokehScale={bokehScale}
-            height={480}
+        {glitchEnabled && (
+          <Glitch
+            delay={glitchDelay}
+            duration={glitchDuration}
+            strength={glitchStrength}
+            mode={GlitchMode.SPORADIC}
+            active
+            ratio={0.85}
           />
-          
-          {glitchEnabled && (
-            <Glitch
-              delay={glitchDelay}
-              duration={glitchDuration}
-              strength={glitchStrength}
-              mode={GlitchMode.SPORADIC}
-              active
-              ratio={0.85}
-            />
-          )}
-          
-          {pixelationEnabled && (
-            <Pixelation
-              granularity={pixelationGranularity}
-            />
-          )}
-          
-          <HueSaturation
-            hue={hue}
-            saturation={saturation}
+        )}
+        
+        {pixelationEnabled && (
+          <Pixelation
+            granularity={pixelationGranularity}
           />
-          
-          <BrightnessContrast
-            brightness={brightness}
-            contrast={contrast}
+        )}
+        
+        <HueSaturation
+          hue={hue}
+          saturation={saturation}
+        />
+        
+        <BrightnessContrast
+          brightness={brightness}
+          contrast={contrast}
+        />
+        
+        {sepiaEnabled && (
+          <Sepia
+            intensity={sepiaIntensity}
           />
-          
-          {sepiaEnabled && (
-            <Sepia
-              intensity={sepiaIntensity}
-            />
-          )}
-          
-          {dotScreenEnabled && (
-            <DotScreen
-              scale={dotScreenScale}
-            />
-          )}
-        </EffectComposer>
-      </Canvas>
-    </div>
+        )}
+        
+        {dotScreenEnabled && (
+          <DotScreen
+            scale={dotScreenScale}
+          />
+        )}
+      </EffectComposer>
+    </>
   );
 }
 

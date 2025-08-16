@@ -119,45 +119,33 @@ export default function BasicPhysics() {
   });
 
   return (
-    <div className="w-full h-full relative">
-      <Canvas
-        camera={{ position: [15, 10, 15], fov: 50 }}
-        shadows
+    <>
+      <color attach="background" args={['#222']} />
+      <ambientLight intensity={0.3} />
+      <directionalLight
+        position={[10, 10, 5]}
+        intensity={1}
+        castShadow
+        shadow-mapSize={[2048, 2048]}
+      />
+      <pointLight position={[-10, 5, -10]} intensity={0.5} color="#ff0088" />
+
+      <Physics
+        gravity={[0, gravity, 0]}
+        iterations={iterations}
+        tolerance={tolerance}
+        defaultContactMaterial={{
+          friction: 0.4,
+          restitution: 0.3,
+        }}
       >
-        <color attach="background" args={['#222']} />
-        <ambientLight intensity={0.3} />
-        <directionalLight
-          position={[10, 10, 5]}
-          intensity={1}
-          castShadow
-          shadow-mapSize={[2048, 2048]}
-        />
-        <pointLight position={[-10, 5, -10]} intensity={0.5} color="#ff0088" />
-
-        <Physics
-          gravity={[0, gravity, 0]}
-          iterations={iterations}
-          tolerance={tolerance}
-          defaultContactMaterial={{
-            friction: 0.4,
-            restitution: 0.3,
-          }}
-        >
-          {objects}
-          <Ground />
-          <Walls />
-        </Physics>
-
-        <OrbitControls 
-          enableDamping 
-          dampingFactor={0.05}
-          minDistance={5}
-          maxDistance={40}
-        />
-        
-        <gridHelper args={[50, 50]} position={[0, -4.99, 0]} />
-      </Canvas>
-    </div>
+        {objects}
+        <Ground />
+        <Walls />
+      </Physics>
+      
+      <gridHelper args={[50, 50]} position={[0, -4.99, 0]} />
+    </>
   );
 }
 
