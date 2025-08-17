@@ -19,7 +19,7 @@ function Portal() {
   return (
     <mesh position={[0, 0, 0]}>
       <planeGeometry args={[4, 4]} />
-      <MeshPortalMaterial>
+      <MeshPortalMaterial blur={0} resolution={512}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} />
         <Box args={[2, 2, 2]}>

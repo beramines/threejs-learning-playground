@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, shaderMaterial } from '@react-three/drei';
 import { useControls } from 'leva';
@@ -144,6 +144,13 @@ const FireShaderMaterial = shaderMaterial(
 
 // TypeScriptに型を追加
 extend({ FireShaderMaterial });
+
+// JSX用の型宣言
+declare module '@react-three/fiber' {
+  interface ThreeElements {
+    fireShaderMaterial: any;
+  }
+}
 
 // 炎エフェクトコンポーネント
 function FireEffect() {

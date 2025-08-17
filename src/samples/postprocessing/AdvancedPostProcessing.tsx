@@ -161,9 +161,9 @@ export default function AdvancedPostProcessing() {
         
         {glitchEnabled && (
           <Glitch
-            delay={glitchDelay}
-            duration={glitchDuration}
-            strength={glitchStrength}
+            delay={new THREE.Vector2(glitchDelay[0], glitchDelay[1])}
+            duration={new THREE.Vector2(glitchDuration[0], glitchDuration[1])}
+            strength={new THREE.Vector2(glitchStrength[0], glitchStrength[1])}
             mode={GlitchMode.SPORADIC}
             active
             ratio={0.85}
