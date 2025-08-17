@@ -43,7 +43,7 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
     };
   },
   writable: true,
-})
+});
 
 // Mock ResizeObserver
 (globalThis as any).ResizeObserver = function() {} as any;
