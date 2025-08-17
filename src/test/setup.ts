@@ -2,7 +2,8 @@ import '@testing-library/jest-dom'
 
 // Mock Three.js WebGL context
 Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
-  value: () => ({
+  value: function(contextType: string) {
+    return {
     clearColor: () => {},
     clear: () => {},
     getExtension: () => null,
@@ -39,22 +40,22 @@ Object.defineProperty(HTMLCanvasElement.prototype, 'getContext', {
     vertexAttribPointer: () => {},
     enableVertexAttribArray: () => {},
     getAttribLocation: () => 0,
-  }),
+    };
+  },
   writable: true,
 })
 
 // Mock ResizeObserver
-global.ResizeObserver = class ResizeObserver {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-}
+(globalThis as any).ResizeObserver = function() {} as any;
+(globalThis as any).ResizeObserver.prototype.observe = function() {};
+(globalThis as any).ResizeObserver.prototype.unobserve = function() {};
+(globalThis as any).ResizeObserver.prototype.disconnect = function() {};
 
 // Mock requestAnimationFrame
-global.requestAnimationFrame = (cb: FrameRequestCallback) => {
+(globalThis as any).requestAnimationFrame = (cb: FrameRequestCallback) => {
   return setTimeout(cb, 0)
 }
 
-global.cancelAnimationFrame = (id: number) => {
+(globalThis as any).cancelAnimationFrame = (id: number) => {
   clearTimeout(id)
 }

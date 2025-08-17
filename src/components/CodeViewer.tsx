@@ -6,7 +6,7 @@ interface CodeViewerProps {
   language?: string;
 }
 
-const CodeViewer: React.FC<CodeViewerProps> = ({ code, language = 'typescript' }) => {
+const CodeViewer: React.FC<CodeViewerProps> = ({ code }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 

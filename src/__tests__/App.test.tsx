@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { MemoryRouter, Routes, Route } from 'react-router-dom'
-import React from 'react'
 
 // Mock the complex components that require WebGL
 vi.mock('../components/HomePage', () => ({
@@ -49,8 +48,8 @@ const TestRoutes = () => (
   <Routes>
     <Route path="/" element={<div>Root</div>} />
     <Route path="/home" element={<HomePage />} />
-    <Route path="/category/:categoryId" element={<CategoryView />} />
-    <Route path="/category/:categoryId/:sampleId" element={<SampleViewer />} />
+    <Route path="/category/:categoryId" element={<CategoryView categoryId="test" onSampleSelect={() => {}} samplesMap={{}} />} />
+    <Route path="/category/:categoryId/:sampleId" element={<SampleViewer categoryId="test" sampleId="test" samplesMap={{}} />} />
   </Routes>
 )
 

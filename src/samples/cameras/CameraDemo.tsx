@@ -1,8 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useControls } from 'leva';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, OrthographicCamera } from '@react-three/drei';
-import * as THREE from 'three';
 
 const Scene = ({ cameraType, fov, zoom, near, far }: any) => {
   return (

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useControls } from 'leva';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -24,7 +24,7 @@ export const BasicCube = () => {
     wireframe: { value: false, label: 'ワイヤーフレーム' }
   });
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (meshRef.current) {
       meshRef.current.rotation.x += rotationSpeed;
       meshRef.current.rotation.y += rotationSpeed;
