@@ -25,8 +25,7 @@ export const LightingDemo = () => {
     pointColor,
     spotIntensity,
     spotColor,
-    spotAngle,
-    showHelpers
+    spotAngle
   } = useControls('ライト設定', {
     '環境光': { value: true, collapsed: true },
     ambientIntensity: { value: 0.2, min: 0, max: 1, step: 0.01, label: '環境光強度' },
@@ -44,7 +43,6 @@ export const LightingDemo = () => {
     spotIntensity: { value: 1, min: 0, max: 2, step: 0.01, label: 'スポット光強度' },
     spotColor: { value: '#ff00ff', label: 'スポット光色' },
     spotAngle: { value: Math.PI / 6, min: 0, max: Math.PI / 2, step: 0.01, label: 'スポット光角度' },
-    showHelpers: { value: true, label: 'ヘルパー表示' }
   });
 
   useFrame((state) => {

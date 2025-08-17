@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Box, Sphere, Text } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { Box, Sphere, Text } from '@react-three/drei';
 import { 
   EffectComposer, 
   DepthOfField, 
@@ -11,7 +11,7 @@ import {
   Sepia,
   DotScreen
 } from '@react-three/postprocessing';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import { GlitchMode } from 'postprocessing';
 import * as THREE from 'three';
 

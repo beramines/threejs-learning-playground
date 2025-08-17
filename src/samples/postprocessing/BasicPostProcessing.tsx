@@ -1,13 +1,11 @@
-import { useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Box, Sphere, Torus } from '@react-three/drei';
+import { Box, Sphere, Torus } from '@react-three/drei';
 import { EffectComposer, Bloom, ChromaticAberration, Vignette, Noise } from '@react-three/postprocessing';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import { BlendFunction } from 'postprocessing';
 
 // 3Dオブジェクトコンポーネント
 function Scene() {
-  const { rotationSpeed } = useControls('シーン設定', {
+  useControls('シーン設定', {
     rotationSpeed: { value: 0.01, min: 0, max: 0.1, step: 0.001 }
   });
 

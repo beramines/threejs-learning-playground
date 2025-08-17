@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/124</span>
+                <span class='fraction'>0/119</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/124</span>
+                <span class='fraction'>0/119</span>
             </div>
         
             
@@ -227,16 +227,7 @@
 <a name='L162'></a><a href='#L162'>162</a>
 <a name='L163'></a><a href='#L163'>163</a>
 <a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a>
-<a name='L168'></a><a href='#L168'>168</a>
-<a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a>
-<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L165'></a><a href='#L165'>165</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -302,7 +293,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -337,7 +327,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -378,7 +367,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -398,15 +386,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useRef, useState, useMemo } from 'react';</span></span></span>
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useRef, useMemo } from 'react';</span></span></span>
+import { useFrame } from '@react-three/fiber';
 import { 
   OrbitControls, 
   PerspectiveCamera, 
@@ -414,11 +400,9 @@ import {
   Text, 
   Box,
   Sphere,
-  MeshPortalMaterial,
-  useGLTF,
-  Clone
+  MeshPortalMaterial
 } from '@react-three/drei';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import * as THREE from 'three';
 &nbsp;
 // ポータルマテリアルの例
@@ -426,7 +410,7 @@ import * as THREE from 'three';
 <span class="cstat-no" title="statement not covered" >  return (</span>
 <span class="cstat-no" title="statement not covered" >    &lt;mesh position={[0, 0, 0]}&gt;</span>
 <span class="cstat-no" title="statement not covered" >      &lt;planeGeometry args={[4, 4]} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;MeshPortalMaterial&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;MeshPortalMaterial blur={0} resolution={512}&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;ambientLight intensity={0.5} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;directionalLight position={[10, 10, 5]} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;Box args={[2, 2, 2]}&gt;</span>
@@ -470,9 +454,8 @@ import * as THREE from 'three';
 &nbsp;
 // カスタムジオメトリの例
 <span class="cstat-no" title="statement not covered" >function CustomGeometry() {</span>
-<span class="cstat-no" title="statement not covered" >  const { vertices, wireframe } = useControls('カスタムジオメトリ', {</span>
-<span class="cstat-no" title="statement not covered" >    vertices: { value: 50, min: 10, max: 200, step: 1 },</span>
-<span class="cstat-no" title="statement not covered" >    wireframe: false</span>
+<span class="cstat-no" title="statement not covered" >  const { vertices } = useControls('カスタムジオメトリ', {</span>
+<span class="cstat-no" title="statement not covered" >    vertices: { value: 50, min: 10, max: 200, step: 1 }</span>
 <span class="cstat-no" title="statement not covered" >  });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  const geometry = useMemo(() =&gt; {</span>
@@ -509,7 +492,6 @@ import * as THREE from 'three';
 &nbsp;
 // マルチパスレンダリングの例
 <span class="cstat-no" title="statement not covered" >function MultipassScene() {</span>
-<span class="cstat-no" title="statement not covered" >  const cam = useRef&lt;THREE.PerspectiveCamera&gt;(null);</span>
 <span class="cstat-no" title="statement not covered" >  const { renderToTexture } = useControls('マルチパス', {</span>
 <span class="cstat-no" title="statement not covered" >    renderToTexture: true</span>
 <span class="cstat-no" title="statement not covered" >  });</span>
@@ -546,10 +528,9 @@ import * as THREE from 'three';
 <span class="cstat-no" title="statement not covered" >  });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="w-full h-full relative"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Canvas camera={{ position: [10, 5, 10], fov: 50 }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;color attach="background" args={['#222']} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;fog attach="fog" args={['#222', 5, 30]} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;color attach="background" args={['#222']} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;fog attach="fog" args={['#222', 5, 30]} /&gt;</span>
         
 <span class="cstat-no" title="statement not covered" >        &lt;ambientLight intensity={0.5} /&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;directionalLight position={[10, 10, 5]} intensity={1} castShadow /&gt;</span>
@@ -568,9 +549,7 @@ import * as THREE from 'three';
 <span class="cstat-no" title="statement not covered" >        /&gt;</span>
         
 <span class="cstat-no" title="statement not covered" >        &lt;gridHelper args={[20, 20]} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/Canvas&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Leva collapsed={false} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
   );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
@@ -583,7 +562,7 @@ import * as THREE from 'three';
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-16T11:07:04.647Z
+                at 2025-08-17T14:48:48.912Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

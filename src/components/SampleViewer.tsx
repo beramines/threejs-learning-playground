@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
+import { type SamplesMap } from '../types';
 
 interface SampleViewerProps {
   categoryId: string;
   sampleId: string;
-  samplesMap: any;
+  samplesMap: SamplesMap;
 }
 
 const SampleViewer: React.FC<SampleViewerProps> = ({

@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { type SamplesMap } from '../types';
 
 interface CategoryViewProps {
   categoryId: string;
   onSampleSelect: (sampleId: string) => void;
-  samplesMap: any;
+  samplesMap: SamplesMap;
 }
 
 const CategoryView: React.FC<CategoryViewProps> = ({
@@ -17,7 +18,7 @@ const CategoryView: React.FC<CategoryViewProps> = ({
   const samples = samplesMap[categoryId] || {};
   
   // サンプル一覧を取得
-  const sampleList = Object.entries(samples).map(([key, component]: [string, any]) => ({
+  const sampleList = Object.entries(samples).map(([key, component]: [string, React.ComponentType & { title?: string; description?: string }]) => ({
     id: key,
     title: component.title || key,
     description: component.description || 'サンプルの説明',

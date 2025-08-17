@@ -1,5 +1,5 @@
-import { useRef, useState, useMemo } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { useRef, useMemo } from 'react';
+import { useFrame } from '@react-three/fiber';
 import { 
   OrbitControls, 
   PerspectiveCamera, 
@@ -7,11 +7,9 @@ import {
   Text, 
   Box,
   Sphere,
-  MeshPortalMaterial,
-  useGLTF,
-  Clone
+  MeshPortalMaterial
 } from '@react-three/drei';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import * as THREE from 'three';
 
 // ポータルマテリアルの例
@@ -63,9 +61,8 @@ function RenderTextureExample() {
 
 // カスタムジオメトリの例
 function CustomGeometry() {
-  const { vertices, wireframe } = useControls('カスタムジオメトリ', {
-    vertices: { value: 50, min: 10, max: 200, step: 1 },
-    wireframe: false
+  const { vertices } = useControls('カスタムジオメトリ', {
+    vertices: { value: 50, min: 10, max: 200, step: 1 }
   });
 
   const geometry = useMemo(() => {
@@ -102,7 +99,6 @@ function CustomGeometry() {
 
 // マルチパスレンダリングの例
 function MultipassScene() {
-  const cam = useRef<THREE.PerspectiveCamera>(null);
   const { renderToTexture } = useControls('マルチパス', {
     renderToTexture: true
   });

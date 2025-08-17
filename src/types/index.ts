@@ -14,6 +14,9 @@ export interface Category {
   samples: Sample[];
 }
 
+// サンプルマップの型定義（各カテゴリのモジュールを直接格納）
+export type SamplesMap = Record<string, Record<string, React.ComponentType & { title?: string; description?: string; hasCanvas?: boolean }>>;
+
 // Three.jsの機能カテゴリー
 export const categories: Omit<Category, 'samples'>[] = [
   {

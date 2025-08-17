@@ -7,7 +7,7 @@ import CategoryView from './components/CategoryView';
 import SampleViewer from './components/SampleViewer';
 import Loading from './components/Loading';
 import HomePage from './components/HomePage';
-import { categories } from './types';
+import { categories, type SamplesMap } from './types';
 
 // サンプルコンポーネントのインポート
 import * as BasicsSamples from './samples/basics';
@@ -26,7 +26,7 @@ import * as AdvancedSamples from './samples/advanced';
 // ラッパーコンポーネント
 const CategoryViewWrapper: React.FC<{
   onSampleSelect: (sampleId: string) => void;
-  samplesMap: any;
+  samplesMap: SamplesMap;
 }> = ({ onSampleSelect, samplesMap }) => {
   const { categoryId } = useParams<{ categoryId: string }>();
   return (
@@ -39,7 +39,7 @@ const CategoryViewWrapper: React.FC<{
 };
 
 const SampleViewerWrapper: React.FC<{
-  samplesMap: any;
+  samplesMap: SamplesMap;
 }> = ({ samplesMap }) => {
   const { categoryId, sampleId } = useParams<{ categoryId: string; sampleId: string }>();
   return (

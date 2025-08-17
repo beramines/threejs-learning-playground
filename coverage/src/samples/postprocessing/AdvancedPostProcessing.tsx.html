@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/163</span>
+                <span class='fraction'>0/151</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/163</span>
+                <span class='fraction'>0/151</span>
             </div>
         
             
@@ -269,21 +269,7 @@
 <a name='L204'></a><a href='#L204'>204</a>
 <a name='L205'></a><a href='#L205'>205</a>
 <a name='L206'></a><a href='#L206'>206</a>
-<a name='L207'></a><a href='#L207'>207</a>
-<a name='L208'></a><a href='#L208'>208</a>
-<a name='L209'></a><a href='#L209'>209</a>
-<a name='L210'></a><a href='#L210'>210</a>
-<a name='L211'></a><a href='#L211'>211</a>
-<a name='L212'></a><a href='#L212'>212</a>
-<a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a>
-<a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L207'></a><a href='#L207'>207</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -433,19 +419,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -494,8 +468,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -504,8 +476,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useRef } from 'react';</span></span></span>
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, Box, Sphere, Text } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+import { Box, Sphere, Text } from '@react-three/drei';
 import { 
   EffectComposer, 
   DepthOfField, 
@@ -516,7 +488,7 @@ import {
   Sepia,
   DotScreen
 } from '@react-three/postprocessing';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import { GlitchMode } from 'postprocessing';
 import * as THREE from 'three';
 &nbsp;
@@ -650,74 +622,60 @@ import * as THREE from 'three';
 <span class="cstat-no" title="statement not covered" >  });</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="w-full h-full relative"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Canvas</span>
-<span class="cstat-no" title="statement not covered" >        camera={{ position: [10, 5, 10], fov: 50 }}</span>
-<span class="cstat-no" title="statement not covered" >        gl={{ antialias: false }}</span>
-<span class="cstat-no" title="statement not covered" >        shadows</span>
-      &gt;
-<span class="cstat-no" title="statement not covered" >        &lt;color attach="background" args={['#000']} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;fog attach="fog" args={['#000', 10, 50]} /&gt;</span>
-        
-<span class="cstat-no" title="statement not covered" >        &lt;AnimatedScene /&gt;</span>
-        
-<span class="cstat-no" title="statement not covered" >        &lt;OrbitControls </span>
-<span class="cstat-no" title="statement not covered" >          enableDamping </span>
-<span class="cstat-no" title="statement not covered" >          dampingFactor={0.05}</span>
-<span class="cstat-no" title="statement not covered" >          minDistance={5}</span>
-<span class="cstat-no" title="statement not covered" >          maxDistance={30}</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;color attach="background" args={['#000']} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;fog attach="fog" args={['#000', 10, 50]} /&gt;</span>
+      
+<span class="cstat-no" title="statement not covered" >      &lt;AnimatedScene /&gt;</span>
+      
+<span class="cstat-no" title="statement not covered" >      &lt;EffectComposer&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;DepthOfField</span>
+<span class="cstat-no" title="statement not covered" >          focusDistance={focusDistance}</span>
+<span class="cstat-no" title="statement not covered" >          focalLength={focalLength}</span>
+<span class="cstat-no" title="statement not covered" >          bokehScale={bokehScale}</span>
+<span class="cstat-no" title="statement not covered" >          height={480}</span>
 <span class="cstat-no" title="statement not covered" >        /&gt;</span>
         
-<span class="cstat-no" title="statement not covered" >        &lt;EffectComposer&gt;</span>
-<span class="cstat-no" title="statement not covered" >          &lt;DepthOfField</span>
-<span class="cstat-no" title="statement not covered" >            focusDistance={focusDistance}</span>
-<span class="cstat-no" title="statement not covered" >            focalLength={focalLength}</span>
-<span class="cstat-no" title="statement not covered" >            bokehScale={bokehScale}</span>
-<span class="cstat-no" title="statement not covered" >            height={480}</span>
+<span class="cstat-no" title="statement not covered" >        {glitchEnabled &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Glitch</span>
+<span class="cstat-no" title="statement not covered" >            delay={new THREE.Vector2(glitchDelay[0], glitchDelay[1])}</span>
+<span class="cstat-no" title="statement not covered" >            duration={new THREE.Vector2(glitchDuration[0], glitchDuration[1])}</span>
+<span class="cstat-no" title="statement not covered" >            strength={new THREE.Vector2(glitchStrength[0], glitchStrength[1])}</span>
+<span class="cstat-no" title="statement not covered" >            mode={GlitchMode.SPORADIC}</span>
+<span class="cstat-no" title="statement not covered" >            active</span>
+<span class="cstat-no" title="statement not covered" >            ratio={0.85}</span>
 <span class="cstat-no" title="statement not covered" >          /&gt;</span>
-          
-<span class="cstat-no" title="statement not covered" >          {glitchEnabled &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Glitch</span>
-<span class="cstat-no" title="statement not covered" >              delay={glitchDelay}</span>
-<span class="cstat-no" title="statement not covered" >              duration={glitchDuration}</span>
-<span class="cstat-no" title="statement not covered" >              strength={glitchStrength}</span>
-<span class="cstat-no" title="statement not covered" >              mode={GlitchMode.SPORADIC}</span>
-<span class="cstat-no" title="statement not covered" >              active</span>
-<span class="cstat-no" title="statement not covered" >              ratio={0.85}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-          )}
-          
-<span class="cstat-no" title="statement not covered" >          {pixelationEnabled &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Pixelation</span>
-<span class="cstat-no" title="statement not covered" >              granularity={pixelationGranularity}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-          )}
-          
-<span class="cstat-no" title="statement not covered" >          &lt;HueSaturation</span>
-<span class="cstat-no" title="statement not covered" >            hue={hue}</span>
-<span class="cstat-no" title="statement not covered" >            saturation={saturation}</span>
+        )}
+        
+<span class="cstat-no" title="statement not covered" >        {pixelationEnabled &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Pixelation</span>
+<span class="cstat-no" title="statement not covered" >            granularity={pixelationGranularity}</span>
 <span class="cstat-no" title="statement not covered" >          /&gt;</span>
-          
-<span class="cstat-no" title="statement not covered" >          &lt;BrightnessContrast</span>
-<span class="cstat-no" title="statement not covered" >            brightness={brightness}</span>
-<span class="cstat-no" title="statement not covered" >            contrast={contrast}</span>
+        )}
+        
+<span class="cstat-no" title="statement not covered" >        &lt;HueSaturation</span>
+<span class="cstat-no" title="statement not covered" >          hue={hue}</span>
+<span class="cstat-no" title="statement not covered" >          saturation={saturation}</span>
+<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+        
+<span class="cstat-no" title="statement not covered" >        &lt;BrightnessContrast</span>
+<span class="cstat-no" title="statement not covered" >          brightness={brightness}</span>
+<span class="cstat-no" title="statement not covered" >          contrast={contrast}</span>
+<span class="cstat-no" title="statement not covered" >        /&gt;</span>
+        
+<span class="cstat-no" title="statement not covered" >        {sepiaEnabled &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;Sepia</span>
+<span class="cstat-no" title="statement not covered" >            intensity={sepiaIntensity}</span>
 <span class="cstat-no" title="statement not covered" >          /&gt;</span>
-          
-<span class="cstat-no" title="statement not covered" >          {sepiaEnabled &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;Sepia</span>
-<span class="cstat-no" title="statement not covered" >              intensity={sepiaIntensity}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-          )}
-          
-<span class="cstat-no" title="statement not covered" >          {dotScreenEnabled &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >            &lt;DotScreen</span>
-<span class="cstat-no" title="statement not covered" >              scale={dotScreenScale}</span>
-<span class="cstat-no" title="statement not covered" >            /&gt;</span>
-          )}
-<span class="cstat-no" title="statement not covered" >        &lt;/EffectComposer&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/Canvas&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Leva collapsed={false} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+        )}
+        
+<span class="cstat-no" title="statement not covered" >        {dotScreenEnabled &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >          &lt;DotScreen</span>
+<span class="cstat-no" title="statement not covered" >            scale={dotScreenScale}</span>
+<span class="cstat-no" title="statement not covered" >          /&gt;</span>
+        )}
+<span class="cstat-no" title="statement not covered" >      &lt;/EffectComposer&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
   );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
@@ -730,7 +688,7 @@ import * as THREE from 'three';
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-16T11:07:04.647Z
+                at 2025-08-17T14:48:48.912Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

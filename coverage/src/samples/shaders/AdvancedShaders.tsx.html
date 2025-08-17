@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/120</span>
+                <span class='fraction'>0/110</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/120</span>
+                <span class='fraction'>0/110</span>
             </div>
         
             
@@ -357,12 +357,7 @@
 <a name='L292'></a><a href='#L292'>292</a>
 <a name='L293'></a><a href='#L293'>293</a>
 <a name='L294'></a><a href='#L294'>294</a>
-<a name='L295'></a><a href='#L295'>295</a>
-<a name='L296'></a><a href='#L296'>296</a>
-<a name='L297'></a><a href='#L297'>297</a>
-<a name='L298'></a><a href='#L298'>298</a>
-<a name='L299'></a><a href='#L299'>299</a>
-<a name='L300'></a><a href='#L300'>300</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L295'></a><a href='#L295'>295</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -510,6 +505,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -632,28 +634,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -661,10 +651,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { useRef, useMemo } from 'react';</span></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React, { useRef, useMemo } from 'react';</span></span></span>
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { OrbitControls, shaderMaterial } from '@react-three/drei';
-import { Leva, useControls } from 'leva';
+import { useControls } from 'leva';
 import * as THREE from 'three';
 &nbsp;
 // カスタムシェーダーマテリアルを拡張
@@ -808,6 +798,13 @@ import * as THREE from 'three';
 // TypeScriptに型を追加
 <span class="cstat-no" title="statement not covered" >extend({ FireShaderMaterial });</span>
 &nbsp;
+// JSX用の型宣言
+declare module '@react-three/fiber' {
+  interface ThreeElements {
+    fireShaderMaterial: any;
+  }
+}
+&nbsp;
 // 炎エフェクトコンポーネント
 <span class="cstat-no" title="statement not covered" >function FireEffect() {</span>
 <span class="cstat-no" title="statement not covered" >  const meshRef = useRef&lt;THREE.Mesh&gt;(null);</span>
@@ -933,28 +930,16 @@ import * as THREE from 'three';
 // メインコンポーネント
 <span class="cstat-no" title="statement not covered" >export default function AdvancedShaders() {</span>
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className="w-full h-full relative"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Canvas</span>
-<span class="cstat-no" title="statement not covered" >        camera={{ position: [8, 4, 8], fov: 50 }}</span>
-      &gt;
-<span class="cstat-no" title="statement not covered" >        &lt;color attach="background" args={['#000000']} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;ambientLight intensity={0.1} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;directionalLight position={[5, 5, 5]} intensity={0.5} /&gt;</span>
-        
-<span class="cstat-no" title="statement not covered" >        &lt;FireEffect /&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;GlowSphere /&gt;</span>
-        
-<span class="cstat-no" title="statement not covered" >        &lt;OrbitControls </span>
-<span class="cstat-no" title="statement not covered" >          enableDamping </span>
-<span class="cstat-no" title="statement not covered" >          dampingFactor={0.05}</span>
-<span class="cstat-no" title="statement not covered" >          minDistance={5}</span>
-<span class="cstat-no" title="statement not covered" >          maxDistance={20}</span>
-<span class="cstat-no" title="statement not covered" >        /&gt;</span>
-        
-<span class="cstat-no" title="statement not covered" >        &lt;gridHelper args={[20, 20]} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/Canvas&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;Leva collapsed={false} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;color attach="background" args={['#000000']} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;ambientLight intensity={0.1} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;directionalLight position={[5, 5, 5]} intensity={0.5} /&gt;</span>
+      
+<span class="cstat-no" title="statement not covered" >      &lt;FireEffect /&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;GlowSphere /&gt;</span>
+      
+<span class="cstat-no" title="statement not covered" >      &lt;gridHelper args={[20, 20]} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/&gt;</span>
   );
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
@@ -967,7 +952,7 @@ import * as THREE from 'three';
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-08-16T11:07:04.647Z
+                at 2025-08-17T14:48:48.912Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

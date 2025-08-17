@@ -26,7 +26,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const navigate = useNavigate();
   
   const getIcon = (iconName: string) => {
-    const Icon = Icons[iconName as keyof typeof Icons] as React.ComponentType<any>;
+    const Icon = Icons[iconName as keyof typeof Icons] as React.ComponentType<{ size?: number }>;
     return Icon ? <Icon size={20} /> : null;
   };
 
