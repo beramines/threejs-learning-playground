@@ -1,0 +1,113 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Upload coverage to Codecov
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+
+  build-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build for Vercel
+        run: npx vite build
+        env:
+          NODE_ENV: production
+
+      - name: Check build output
+        run: |
+          echo "Build completed successfully!"
+          ls -la dist/
+          echo "Build size:"
+          du -sh dist/
+
+      - name: Upload build artifacts (main branch only)
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist/
+          retention-days: 30
+
+  preview-comment:
+    needs: [quality-check, build-check]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Comment PR with Vercel info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const prNumber = context.issue.number;
+
+            const body = `
+            ## 🚀 Vercel Preview Ready
+
+            ✅ Build checks passed
+            ✅ Quality checks passed
+
+            ### What happens next:
+            - Vercel will automatically deploy this PR
+            - Preview URL will be available in Vercel's GitHub integration
+            - Changes will be deployed on merge to main
+
+            ### Build Info:
+            - Node.js: 22
+            - Build tool: Vite
+            - Target: Production
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner,
+              repo,
+              body
+            });
