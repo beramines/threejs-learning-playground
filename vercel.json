@@ -2,11 +2,6 @@
   "buildCommand": "npx vite build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "functions": {
-    "app/api/**/*.js": {
-      "runtime": "nodejs22.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/(.*)",
